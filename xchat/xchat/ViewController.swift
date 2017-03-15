@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Darwin
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+//        let test = String("a".data(using: .ascii), radix:16)
+        let x =  1797649053110092526436
+
     }
 
     override func didReceiveMemoryWarning() {
