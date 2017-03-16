@@ -16,7 +16,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
 //        let test = String("a".data(using: .ascii), radix:16)
-        let x =  1797649053110092526436
+        let baseStr = "asdasdasd"
+        let encode = baseStr.utf8.map{ $0 }.reduce("") { $0 + String($1, radix: 16, uppercase: false) }
+//        let x = Int64(encode, radix: 16) // Convert from Hex string
+        let present = PRESENTCipher(key: "1234567890")
+        let str = "a"
+        
+        let intValue = strtoll(encode, nil, 16)
+        present?.generateRoundKey80Bit(key: "1234567890")
 
     }
 
