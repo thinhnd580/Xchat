@@ -19,9 +19,10 @@ class ViewController: UIViewController {
 //        let baseStr = "asdasdasd"
 //        let encode = baseStr.utf8.map{ $0 }.reduce("") { $0 + String($1, radix: 16, uppercase: false) }
 //        let x = Int64(encode, radix: 16) // Convert from Hex string
-        let present = PRESENTCipher(key: "1234567890")
+        let present = PRESENTCipher(key: "1234567890123456")
         let cipherText = present?.encrypt(block: "abcd1234")
-
+        
+        let decryptedText = present?.decrypt(block: cipherText!)
     }
 
     override func didReceiveMemoryWarning() {
