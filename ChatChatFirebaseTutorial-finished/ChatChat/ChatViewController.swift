@@ -23,7 +23,7 @@
 import UIKit
 import Photos
 import Firebase
-//import JSQMessagesViewController
+import JSQMessagesViewController
 
 final class ChatViewController: JSQMessagesViewController {
   
@@ -33,7 +33,7 @@ final class ChatViewController: JSQMessagesViewController {
   var channelRef: FIRDatabaseReference?
 
   private lazy var messageRef: FIRDatabaseReference = self.channelRef!.child("messages")
-  fileprivate lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://chatchat-rw-cf107.appspot.com")
+  fileprivate lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://xchat-7a59e.appspot.com/")
   private lazy var userIsTypingRef: FIRDatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
   private lazy var usersTypingQuery: FIRDatabaseQuery = self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
 
@@ -59,7 +59,7 @@ final class ChatViewController: JSQMessagesViewController {
       userIsTypingRef.setValue(newValue)
     }
   }
-  
+    
   lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
   lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
   
@@ -236,7 +236,7 @@ final class ChatViewController: JSQMessagesViewController {
     }
   }
   
-  override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+  override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String?, date: Date!) {
     // 1
     let itemRef = messageRef.childByAutoId()
     

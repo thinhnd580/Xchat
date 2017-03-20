@@ -1,83 +1,78 @@
-/*
-* Copyright (c) 2015 Razeware LLC
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-* THE SOFTWARE.
-*/
+//
+//  LoginViewController.swift
+//  Book Phui
+//
+//  Created by ThinhND on 3/9/17.
+//  Copyright © 2017 Half Bird. All rights reserved.
+//
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import GoogleSignIn
+import NVActivityIndicatorView
 
-class LoginViewController: UIViewController {
-  
-  // MARK: Properties
-  @IBOutlet weak var nameField: UITextField!
-  @IBOutlet weak var bottomLayoutGuideConstraint: NSLayoutConstraint!
-
-  // MARK: View Lifecycle
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-  }
-  
-  // MARK: Actions
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
-  @IBAction func loginDidTouch(_ sender: AnyObject) {
-    if nameField?.text != "" {
-      FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
-        if let err:Error = error {
-          print(err.localizedDescription)
-          return
-        }
+    
+    
+    var activityIndicatorView : NVActivityIndicatorView!
+
+//    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+//        
+//        print("\(result)")
+//        if (error == nil) {
+//            if !result.isCancelled {
+//                let credential = FIRFacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
+//                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+//                    // ...
+//                    if let error = error {
+//                        // ...
+//                        return
+//                    }
+//                    self.activityIndicatorView.stopAnimating()
+//                }
+//                
+//            }
+//        }
+//    }
+//    
+//    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+//        
+//    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
+//        self.btnFBLogin = FBSDKLoginButton()
+//        self.btnFBLogin.readPermissions = ["public_profile", "email", "user_friends"];
+//        self.btnFBLogin.delegate = self;
+        // Do any additional setup after loading the view.
         
-        self.performSegue(withIdentifier: "LoginToChat", sender: nil)
-      })
+        self.activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: self.view.bounds.size.width/2 - 50, y: self.view.bounds.size.height/2 - 50, width: 100, height: 100))
+        self.activityIndicatorView.center = self.view.center
+        self.view.addSubview(self.activityIndicatorView)
+//        self.activityIndicatorView.startAnimating()
     }
-  }
-  
-  // MARK: Navigation
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    super.prepare(for: segue, sender: sender)
-    let navVc = segue.destination as! UINavigationController
-    let channelVc = navVc.viewControllers.first as! ChannelListViewController
     
-    channelVc.senderDisplayName = nameField?.text
-  }
-  
-  // MARK: - Notifications
-  
-  func keyboardWillShowNotification(_ notification: Notification) {
-    let keyboardEndFrame = ((notification as NSNotification).userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-    let convertedKeyboardEndFrame = view.convert(keyboardEndFrame, from: view.window)
-    bottomLayoutGuideConstraint.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
-  }
-  
-  func keyboardWillHideNotification(_ notification: Notification) {
-    bottomLayoutGuideConstraint.constant = 48
-  }
-}
+    @IBAction func btnLoginFBClick(_ sender: Any) {
+        //TODO : show loading
+//        self.btnFBLogin.sendActions(for: .touchUpInside)
+        self.activityIndicatorView.startAnimating()
+    }
+    
+    @IBAction func btnLoginGGClick(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
 
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
