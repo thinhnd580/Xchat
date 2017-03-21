@@ -33,6 +33,17 @@
 		FFA167F11E7FD8D8003C073A /* Channel.swift in Resources */ = {isa = PBXBuildFile; fileRef = 45A0D9001D4BB5E900F26729 /* Channel.swift */; };
 		FFA167F21E7FD8F1003C073A /* UIImage+Gif.swift in Resources */ = {isa = PBXBuildFile; fileRef = 459780D21D6465FB007BE66F /* UIImage+Gif.swift */; };
 		FFA167F41E7FDDB1003C073A /* FireBaseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167F31E7FDDB1003C073A /* FireBaseControl.swift */; };
+		FFA167F61E80D78A003C073A /* AsymmetricCryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167F51E80D78A003C073A /* AsymmetricCryptoManager.swift */; };
+		FFA167F91E80DC13003C073A /* CryptoExportImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167F71E80DC13003C073A /* CryptoExportImportManager.swift */; };
+		FFA167FA1E80DC13003C073A /* Data+HexDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167F81E80DC13003C073A /* Data+HexDescription.swift */; };
+		FFA167FC1E810BE9003C073A /* SwCrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167FB1E810BE9003C073A /* SwCrypt.swift */; };
+		FFA167FF1E812AF2003C073A /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167FD1E812AF2003C073A /* ChannelCell.swift */; };
+		FFA168001E812AF2003C073A /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA167FE1E812AF2003C073A /* ChannelCell.xib */; };
+		FFA168021E813132003C073A /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA168011E813132003C073A /* FriendListViewController.swift */; };
+		FFA168051E813150003C073A /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA168031E813150003C073A /* FriendCell.swift */; };
+		FFA168061E813150003C073A /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA168041E813150003C073A /* FriendCell.xib */; };
+		FFA168081E8134ED003C073A /* ForwardFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA168071E8134ED003C073A /* ForwardFriendViewController.swift */; };
+		FFA1680A1E813E45003C073A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA168091E813E45003C073A /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +78,17 @@
 		FFA167EC1E7FC5D3003C073A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FFA167EE1E7FC727003C073A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FFA167F31E7FDDB1003C073A /* FireBaseControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseControl.swift; sourceTree = "<group>"; };
+		FFA167F51E80D78A003C073A /* AsymmetricCryptoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsymmetricCryptoManager.swift; sourceTree = "<group>"; };
+		FFA167F71E80DC13003C073A /* CryptoExportImportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoExportImportManager.swift; sourceTree = "<group>"; };
+		FFA167F81E80DC13003C073A /* Data+HexDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+HexDescription.swift"; sourceTree = "<group>"; };
+		FFA167FB1E810BE9003C073A /* SwCrypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwCrypt.swift; sourceTree = "<group>"; };
+		FFA167FD1E812AF2003C073A /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		FFA167FE1E812AF2003C073A /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
+		FFA168011E813132003C073A /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		FFA168031E813150003C073A /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		FFA168041E813150003C073A /* FriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
+		FFA168071E8134ED003C073A /* ForwardFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardFriendViewController.swift; sourceTree = "<group>"; };
+		FFA168091E813E45003C073A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +106,9 @@
 		45A0D8FF1D4BB5DD00F26729 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				45A0D9001D4BB5E900F26729 /* Channel.swift */,
 				FFA167F31E7FDDB1003C073A /* FireBaseControl.swift */,
+				45A0D9001D4BB5E900F26729 /* Channel.swift */,
+				FFA168091E813E45003C073A /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -148,6 +171,8 @@
 				FFA167EE1E7FC727003C073A /* LoginViewController.swift */,
 				45A0D8F91D49419500F26729 /* ChannelListViewController.swift */,
 				FBEE53031D7B26450004CC1B /* ChatViewController.swift */,
+				FFA168011E813132003C073A /* FriendListViewController.swift */,
+				FFA168071E8134ED003C073A /* ForwardFriendViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -171,6 +196,10 @@
 				FFA167EC1E7FC5D3003C073A /* Login.storyboard */,
 				BB5355821BEF765800321277 /* LaunchScreen.storyboard */,
 				459E535E1D4BF36A00E675A5 /* License */,
+				FFA167FD1E812AF2003C073A /* ChannelCell.swift */,
+				FFA167FE1E812AF2003C073A /* ChannelCell.xib */,
+				FFA168031E813150003C073A /* FriendCell.swift */,
+				FFA168041E813150003C073A /* FriendCell.xib */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -178,6 +207,10 @@
 		FFA167DB1E7FC50D003C073A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FFA167FB1E810BE9003C073A /* SwCrypt.swift */,
+				FFA167F71E80DC13003C073A /* CryptoExportImportManager.swift */,
+				FFA167F81E80DC13003C073A /* Data+HexDescription.swift */,
+				FFA167F51E80D78A003C073A /* AsymmetricCryptoManager.swift */,
 				FFA167DC1E7FC50D003C073A /* .gitkeep */,
 				FFA167DD1E7FC50D003C073A /* Api.swift */,
 				FFA167DE1E7FC50D003C073A /* Constants.swift */,
@@ -225,8 +258,9 @@
 				TargetAttributes = {
 					BB5355751BEF765800321277 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = C949UFV7RU;
+						DevelopmentTeam = 556LZQ7WUH;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -261,9 +295,11 @@
 				FFA167F21E7FD8F1003C073A /* UIImage+Gif.swift in Resources */,
 				FFA167F01E7FD8D8003C073A /* ChatChat.entitlements in Resources */,
 				FFA167F11E7FD8D8003C073A /* Channel.swift in Resources */,
+				FFA168001E812AF2003C073A /* ChannelCell.xib in Resources */,
 				BB5355841BEF765800321277 /* LaunchScreen.storyboard in Resources */,
 				BB5355811BEF765800321277 /* Assets.xcassets in Resources */,
 				FFA167ED1E7FC5D3003C073A /* Login.storyboard in Resources */,
+				FFA168061E813150003C073A /* FriendCell.xib in Resources */,
 				459E535F1D4BF36A00E675A5 /* License in Resources */,
 				FFA167E41E7FC50D003C073A /* .gitkeep in Resources */,
 				BB53557F1BEF765800321277 /* Main.storyboard in Resources */,
@@ -328,19 +364,28 @@
 			files = (
 				FFA167EF1E7FC727003C073A /* LoginViewController.swift in Sources */,
 				45A0D9011D4BB5E900F26729 /* Channel.swift in Sources */,
+				FFA167FC1E810BE9003C073A /* SwCrypt.swift in Sources */,
+				FFA167F61E80D78A003C073A /* AsymmetricCryptoManager.swift in Sources */,
 				FFA167E91E7FC50D003C073A /* UIAvatar.swift in Sources */,
 				459780D31D6465FB007BE66F /* UIImage+Gif.swift in Sources */,
 				FFA167E81E7FC50D003C073A /* LocationManager.swift in Sources */,
 				FBEE53041D7B26450004CC1B /* ChatViewController.swift in Sources */,
+				FFA168081E8134ED003C073A /* ForwardFriendViewController.swift in Sources */,
 				45A0D8FA1D49419500F26729 /* ChannelListViewController.swift in Sources */,
+				FFA167FF1E812AF2003C073A /* ChannelCell.swift in Sources */,
 				FFA167F41E7FDDB1003C073A /* FireBaseControl.swift in Sources */,
+				FFA168051E813150003C073A /* FriendCell.swift in Sources */,
+				FFA168021E813132003C073A /* FriendListViewController.swift in Sources */,
 				FFA167E71E7FC50D003C073A /* DateHelper.swift in Sources */,
 				BB53557A1BEF765800321277 /* AppDelegate.swift in Sources */,
 				FFA167E51E7FC50D003C073A /* Api.swift in Sources */,
 				45A0D8FE1D49508800F26729 /* CreateChannelCell.swift in Sources */,
 				FFA167EB1E7FC50D003C073A /* Util.swift in Sources */,
+				FFA167FA1E80DC13003C073A /* Data+HexDescription.swift in Sources */,
+				FFA1680A1E813E45003C073A /* User.swift in Sources */,
 				FFA167E61E7FC50D003C073A /* Constants.swift in Sources */,
 				FFA167EA1E7FC50D003C073A /* UIView_Borders.swift in Sources */,
+				FFA167F91E80DC13003C073A /* CryptoExportImportManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,15 +506,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ChatChat/ChatChat.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anh Son Le (JV9RZ28ZA6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = C949UFV7RU;
+				DEVELOPMENT_TEAM = 556LZQ7WUH;
 				INFOPLIST_FILE = ChatChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thjnh195.xchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9a2ee48e-1193-467c-9994-06d26b017031";
+				PROVISIONING_PROFILE_SPECIFIER = "thjnh - xchat-dv";
 				SWIFT_OBJC_BRIDGING_HEADER = "ChatChat/ChatChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -484,15 +530,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ChatChat/ChatChat.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = C949UFV7RU;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChatChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thjnh195.xchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ChatChat/ChatChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

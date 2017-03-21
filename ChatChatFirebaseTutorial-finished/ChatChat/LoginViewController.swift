@@ -17,29 +17,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     var activityIndicatorView : NVActivityIndicatorView!
 
-//    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-//        
-//        print("\(result)")
-//        if (error == nil) {
-//            if !result.isCancelled {
-//                let credential = FIRFacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
-//                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-//                    // ...
-//                    if let error = error {
-//                        // ...
-//                        return
-//                    }
-//                    self.activityIndicatorView.stopAnimating()
-//                }
-//                
-//            }
-//        }
-//    }
-//    
-//    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-//        
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self

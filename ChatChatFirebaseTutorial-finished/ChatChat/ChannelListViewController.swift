@@ -28,12 +28,13 @@ enum Section: Int {
   case currentChannelsSection
 }
 
-class ChannelListViewController: UITableViewController {
+class ChannelListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
   // MARK: Properties
   var senderDisplayName: String?
   var newChannelTextField: UITextField?
   
+    @IBOutlet weak var tableView: UITableView!
   private var channelRefHandle: FIRDatabaseHandle?
   private var channels: [Channel] = []
   
@@ -44,7 +45,11 @@ class ChannelListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "RW RIC"
+    self.tableView.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "ChannelCell")
     observeChannels()
+    self.tableView.dataSource = self
+    self.tableView.delegate = self
+    
   }
   
   deinit {
@@ -60,11 +65,20 @@ class ChannelListViewController: UITableViewController {
       let newChannelRef = channelRef.childByAutoId()
       let channelItem = [
         "name": name
+        
       ]
       newChannelRef.setValue(channelItem)
     }    
   }
   
+    @IBAction func btnAddChannelClick(_ sender: Any) {
+        
+    }
+
+    @IBAction func btnLogoutClick(_ sender: Any) {
+        try? FIRAuth.auth()?.signOut()
+    }
+    
   // MARK: Firebase related methods
 
   private func observeChannels() {
@@ -97,46 +111,39 @@ class ChannelListViewController: UITableViewController {
   }
   
   // MARK: UITableViewDataSource
-  
-  override func numberOfSections(in tableView: UITableView) -> Int {
-    return 2
-  }
-  
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let currentSection: Section = Section(rawValue: section) {
-      switch currentSection {
-      case .createNewChannelSection:
-        return 1
-      case .currentChannelsSection:
-        return channels.count
-      }
-    } else {
-      return 0
-    }
-  }
-  
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let reuseIdentifier = (indexPath as NSIndexPath).section == Section.createNewChannelSection.rawValue ? "NewChannel" : "ExistingChannel"
-    let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
-    if (indexPath as NSIndexPath).section == Section.createNewChannelSection.rawValue {
-      if let createNewChannelCell = cell as? CreateChannelCell {
-        newChannelTextField = createNewChannelCell.newChannelNameField
-      }
-    } else if (indexPath as NSIndexPath).section == Section.currentChannelsSection.rawValue {
-      cell.textLabel?.text = channels[(indexPath as NSIndexPath).row].name
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    return cell
-  }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-  // MARK: UITableViewDelegate
-  
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if (indexPath as NSIndexPath).section == Section.currentChannelsSection.rawValue {
-      let channel = channels[(indexPath as NSIndexPath).row]
-      self.performSegue(withIdentifier: "ShowChannel", sender: channel)
+                return channels.count
+
     }
-  }
-  
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChannelCell", for: indexPath) as! ChannelCell
+        
+//        if (indexPath as NSIndexPath).section == Section.createNewChannelSection.rawValue {
+//            if let createNewChannelCell = cell as? CreateChannelCell {
+//                newChannelTextField = createNewChannelCell.newChannelNameField
+//            }
+//        } else if (indexPath as NSIndexPath).section == Section.currentChannelsSection.rawValue {
+            cell.lbTitle.text = channels[(indexPath as NSIndexPath).row].name
+//        }
+        
+        return cell
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if (indexPath as NSIndexPath).section == Section.currentChannelsSection.rawValue {
+            let channel = channels[(indexPath as NSIndexPath).row]
+            self.performSegue(withIdentifier: "ShowChannel", sender: channel)
+//        }
+    }
+
 }

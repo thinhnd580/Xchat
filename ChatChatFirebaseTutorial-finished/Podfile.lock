@@ -70,6 +70,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SwiftyRSA (1.0.0)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - NVActivityIndicatorView
   - SDWebImage (~> 3.8)
+  - SwiftyRSA
 
 SPEC CHECKSUMS:
   Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
@@ -101,7 +103,8 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 075563b3547445ebcff840e3297ce9dd4a23731f
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SwiftyRSA: 3ec69b6a1bd2edf2b8fcb2fcdfd63e00b971e5eb
 
-PODFILE CHECKSUM: 56f22c50606bd861ea7d828259aa6ecd483c6329
+PODFILE CHECKSUM: 0be2ea0caf6f14ed5ff3366feb0f804760d6d207
 
 COCOAPODS: 1.2.0

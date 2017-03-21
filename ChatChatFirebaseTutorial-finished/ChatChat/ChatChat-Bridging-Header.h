@@ -3,3 +3,4 @@
 //
 
 #import <JSQMessagesViewController/JSQMessagesViewController.h>
+#import <CommonCrypto/CommonCrypto.h>

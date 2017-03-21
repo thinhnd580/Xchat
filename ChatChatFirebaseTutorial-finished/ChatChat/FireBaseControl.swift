@@ -8,30 +8,36 @@
 
 import UIKit
 import Firebase
+import SwiftyRSA
 
 class FireBaseControl: NSObject {
     
-    private var channelRefHandle: FIRDatabaseHandle?
-    private lazy var channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child(Constants.FBDatabase.User)
+    static let sharedInstance = FireBaseControl()
+    private var userRefHandle: FIRDatabaseHandle?
+    private lazy var userRef: FIRDatabaseReference = FIRDatabase.database().reference().child(Constants.FBDatabase.User)
     
     func createUser() {
-        if let name = newChannelTextField?.text {
-            let newChannelRef = channelRef.childByAutoId()
-            let channelItem = [
-                "name": name
-            ]
-            newChannelRef.setValue(channelItem)
-        }    
+        let uid = (FIRAuth.auth()?.currentUser?.uid)!
+        let (privateKey, publicKey) = try! CC.RSA.generateKeyPair(1024)
+        let privateKeyPEM = try! SwKeyConvert.PrivateKey.derToPKCS1PEM(privateKey)
+        let publicKeyPEM = SwKeyConvert.PublicKey.derToPKCS8PEM(publicKey)
+        let avatarUrl : String!
+        if let url = FIRAuth.auth()?.currentUser?.photoURL?.absoluteString {
+            avatarUrl = url
+        } else {
+            avatarUrl = ""
+        }
+        
+        let channelItem = [
+            "uid": FIRAuth.auth()?.currentUser?.uid,
+            "email": FIRAuth.auth()?.currentUser?.email,
+            "avatarUrl": avatarUrl,
+            "RSAPKey": publicKeyPEM,
+            "friendListID": "asdasd"
+            ] as [String : Any]
+        self.userRef.child(uid).setValue(channelItem)
+        
     }
 
-    func createChannel(_ sender: AnyObject) {
-        if let name = newChannelTextField?.text {
-            let newChannelRef = channelRef.childByAutoId()
-            let channelItem = [
-                "name": name
-            ]
-            newChannelRef.setValue(channelItem)
-        }    
-    }
     
 }

@@ -11,4 +11,5 @@ target 'ChatChat' do
   pod 'Firebase/Core'
   pod 'SDWebImage', '~>3.8'
   pod 'NVActivityIndicatorView'
+  pod 'SwiftyRSA'
 end

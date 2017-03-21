@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 // ...
                 return
             }
+            FireBaseControl.sharedInstance.createUser()
             self.presentMainScreen()
         }
         // ...
@@ -106,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func presentMainScreen() -> Void {
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateInitialViewController()
         let channelVc = initialViewController?.childViewControllers.first as! ChannelListViewController
