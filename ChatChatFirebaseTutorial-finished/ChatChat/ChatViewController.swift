@@ -258,10 +258,11 @@ final class ChatViewController: JSQMessagesViewController {
     let itemRef = messageRef.childByAutoId()
     
     // 2
+    let decryptText = Cryptography.encryptMessage(message: text, PRESENTKey: self.PRESENTKey!)
     let messageItem = [
       "senderId": senderId!,
       "senderName": senderDisplayName!,
-      "text": text!,
+      "text": decryptText,
     ]
     
     // 3

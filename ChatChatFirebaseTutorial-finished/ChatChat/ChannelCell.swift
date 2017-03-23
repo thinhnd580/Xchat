@@ -10,6 +10,7 @@ import UIKit
 
 class ChannelCell: UITableViewCell {
 
+    @IBOutlet weak var imgAvatar: UIAvatar!
     @IBOutlet weak var lbTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

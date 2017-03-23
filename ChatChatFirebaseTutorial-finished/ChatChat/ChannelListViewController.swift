@@ -48,10 +48,10 @@ class ChannelListViewController: UIViewController, UITableViewDataSource, UITabl
 //    let content = "fuck u"
 //    let en = Cryptography.encryptWithRSAKey(key: publicKey, content: content)
 //    let de = Cryptography.decryptWithRSAKey(key: privateKey, content: en)
-    
-    let x = "cái gì cơ"
-    let en = Cryptography.encryptMessage(message: x, PRESENTKey: "1234567890123456")
-    let de = Cryptography.decryptMessage(message: en, PRESENTKey: "1234567890123456")
+//    
+//    let x = "cái gì cơ"
+//    let en = Cryptography.encryptMessage(message: x, PRESENTKey: "1234567890123456")
+//    let de = Cryptography.decryptMessage(message: en, PRESENTKey: "1234567890123456")
     
     
     title = "RW RIC"
@@ -140,8 +140,6 @@ class ChannelListViewController: UIViewController, UITableViewDataSource, UITabl
         user2.avatarUrl = user2Dic["avatarUrl"]!
         user2.uid = user2Dic["uid"]!
         
-        
-        
         if user1.name == FIRAuth.auth()?.currentUser?.displayName {
             newChannel.name = user2.name
         } else if user2.name == FIRAuth.auth()?.currentUser?.displayName {
@@ -192,23 +190,19 @@ class ChannelListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-                return channels.count
-
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChannelCell", for: indexPath) as! ChannelCell
-        
-//        if (indexPath as NSIndexPath).section == Section.createNewChannelSection.rawValue {
-//            if let createNewChannelCell = cell as? CreateChannelCell {
-//                newChannelTextField = createNewChannelCell.newChannelNameField
-//            }
-//        } else if (indexPath as NSIndexPath).section == Section.currentChannelsSection.rawValue {
-            cell.lbTitle.text = channels[(indexPath as NSIndexPath).row].name
-//        }
-        
+        let channel = channels[(indexPath as NSIndexPath).row]
+        if channel.user1?.name == FIRAuth.auth()?.currentUser?.displayName {
+            cell.imgAvatar.sd_setImage(with: URL.init(string: (channel.user1?.avatarUrl)!))
+        } else if channel.user2?.name == FIRAuth.auth()?.currentUser?.displayName {
+            cell.imgAvatar.sd_setImage(with: URL.init(string: (channel.user2?.avatarUrl)!))
+        }
+        cell.lbTitle.text = channel.name
         return cell
     }
     

@@ -23,10 +23,7 @@ class Cryptography: NSObject {
     }
     
     static func encryptMessage(message: String, PRESENTKey: String) -> String {
-        
-        
-        
-        
+
         //Input : unicode string, length whatever
         //output : heximal string
         var encryptedMessage = ""
