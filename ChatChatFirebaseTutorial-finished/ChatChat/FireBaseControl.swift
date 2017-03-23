@@ -19,7 +19,7 @@ class FireBaseControl: NSObject {
     func createUser() {
         let uid = (FIRAuth.auth()?.currentUser?.uid)!
         let (privateKey, publicKey) = try! CC.RSA.generateKeyPair(1024)
-        let privateKeyPEM = try! SwKeyConvert.PrivateKey.derToPKCS1PEM(privateKey)
+//        let privateKeyPEM = try! SwKeyConvert.PrivateKey.derToPKCS1PEM(privateKey)
         let publicKeyPEM = SwKeyConvert.PublicKey.derToPKCS8PEM(publicKey)
         let avatarUrl : String!
         if let url = FIRAuth.auth()?.currentUser?.photoURL?.absoluteString {
@@ -28,14 +28,19 @@ class FireBaseControl: NSObject {
             avatarUrl = ""
         }
         
-        let channelItem = [
-            "uid": FIRAuth.auth()?.currentUser?.uid,
-            "email": FIRAuth.auth()?.currentUser?.email,
+        
+        
+        let user = [
+            "uid": FIRAuth.auth()?.currentUser?.uid ?? "",
+            "email": FIRAuth.auth()?.currentUser?.email ?? "",
+            "name": FIRAuth.auth()?.currentUser?.displayName ?? "",
             "avatarUrl": avatarUrl,
             "RSAPKey": publicKeyPEM,
             "friendListID": "asdasd"
             ] as [String : Any]
-        self.userRef.child(uid).setValue(channelItem)
+        self.userRef.child(uid).setValue(user)
+        
+        KeyChainControl.saveRSAKeyPair(pubKey: publicKey, priKey: privateKey)
         
     }
 

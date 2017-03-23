@@ -8,14 +8,18 @@
 
 import UIKit
 
-internal class User: NSObject {
-    internal let uid: String
-    internal let avatarUrl: String
-    internal let email: String
-    internal let name: String
-    internal let RSAPKey: String
-    internal let RSASKey: String
+class User {
+    var uid: String = ""
+    var avatarUrl: String = ""
+    var email: String = ""
+    var name: String = ""
+    var RSAPKey: String = ""
+    var RSASKey: String = ""
     
+    init() {
+        
+    }
+
     init(uid: String, name: String, avatarUrl: String, email: String,RSAPKey: String, RSASKey: String ) {
         self.uid = uid
         self.name = name

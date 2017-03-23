@@ -12,4 +12,5 @@ target 'ChatChat' do
   pod 'SDWebImage', '~>3.8'
   pod 'NVActivityIndicatorView'
   pod 'SwiftyRSA'
+  pod 'KeychainAccess'
 end

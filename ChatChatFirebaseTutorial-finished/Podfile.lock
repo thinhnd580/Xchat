@@ -65,6 +65,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - KeychainAccess (3.0.1)
   - NVActivityIndicatorView (3.5.1)
   - Protobuf (3.2.0)
   - SDWebImage (3.8.2):
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Google/SignIn
   - JSQMessagesViewController
+  - KeychainAccess
   - NVActivityIndicatorView
   - SDWebImage (~> 3.8)
   - SwiftyRSA
@@ -100,11 +102,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   NVActivityIndicatorView: 075563b3547445ebcff840e3297ce9dd4a23731f
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyRSA: 3ec69b6a1bd2edf2b8fcb2fcdfd63e00b971e5eb
 
-PODFILE CHECKSUM: 0be2ea0caf6f14ed5ff3366feb0f804760d6d207
+PODFILE CHECKSUM: 371e44fedd824e407ce402b35c64a6b4a9b9dea9
 
 COCOAPODS: 1.2.0

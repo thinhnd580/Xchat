@@ -42,6 +42,7 @@ final class ChatViewController: JSQMessagesViewController {
   
   private var messages: [JSQMessage] = []
   private var photoMessageMap = [String: JSQPhotoMediaItem]()
+    private var PRESENTKey : String?
   
   private var localTyping = false
   var channel: Channel? {
@@ -68,6 +69,14 @@ final class ChatViewController: JSQMessagesViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.senderId = FIRAuth.auth()?.currentUser?.uid
+    
+    if channel?.user1?.uid == self.senderId {
+        self.PRESENTKey = KeyChainControl.getPRESENT128KEYForChannelID(channelID: (channel?.id)!)
+    } else {
+        let RSAPrivateKey = KeyChainControl.getRSAPrivateKey()
+        self.PRESENTKey = Cryptography.decryptWithRSAKey(key: RSAPrivateKey, content: (channel?.initKey)!)
+    }
+    
     observeMessages()
     
     // No avatars
@@ -156,7 +165,10 @@ final class ChatViewController: JSQMessagesViewController {
       let messageData = snapshot.value as! Dictionary<String, String>
 
       if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0 {
-        self.addMessage(withId: id, name: name, text: text)
+        
+        let decryptedText = Cryptography.decryptMessage(message: text, PRESENTKey: self.PRESENTKey!)
+        
+        self.addMessage(withId: id, name: name, text: decryptedText)
         self.finishReceivingMessage()
       } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
         if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
@@ -188,35 +200,40 @@ final class ChatViewController: JSQMessagesViewController {
     })
   }
   
-  private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
-    let storageRef = FIRStorage.storage().reference(forURL: photoURL)
-    storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
-      if let error = error {
-        print("Error downloading image data: \(error)")
-        return
-      }
-      
-      storageRef.metadata(completion: { (metadata, metadataErr) in
-        if let error = metadataErr {
-          print("Error downloading metadata: \(error)")
-          return
-        }
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
         
-        if (metadata?.contentType == "image/gif") {
-          mediaItem.image = UIImage.gifWithData(data!)
-        } else {
-          mediaItem.image = UIImage.init(data: data!)
+        let storageRef = FIRStorage.storage().reference(forURL: photoURL)
+        storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
+            if let error = error {
+                print("Error downloading image data: \(error)")
+                return
+            }
+            
+            storageRef.metadata(completion: { (metadata, metadataErr) in
+                if let error = metadataErr {
+                    print("Error downloading metadata: \(error)")
+                    return
+                }
+                
+                let strFromData = data?.base64EncodedString()
+                let decryptedStrData = Cryptography.decryptMessage(message: strFromData!, PRESENTKey: self.PRESENTKey!)
+                let decryptedData = Data.init(base64Encoded: decryptedStrData)
+                
+                if (metadata?.contentType == "image/gif") {
+                    mediaItem.image = UIImage.gifWithData(decryptedData!)
+                } else {
+                    mediaItem.image = UIImage.init(data: decryptedData!)
+                }
+                self.collectionView.reloadData()
+                
+                guard key != nil else {
+                    return
+                }
+                self.photoMessageMap.removeValue(forKey: key!)
+            })
         }
-        self.collectionView.reloadData()
-        
-        guard key != nil else {
-          return
-        }
-        self.photoMessageMap.removeValue(forKey: key!)
-      })
     }
-  }
-  
+
   private func observeTyping() {
     let typingIndicatorRef = channelRef!.child("typingIndicator")
     userIsTypingRef = typingIndicatorRef.child(senderId)

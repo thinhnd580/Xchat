@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import SDWebImage
+
+protocol FriendListVCDelegate {
+    func didSelectAtIndex(index: Int)
+}
 
 let kFriendCell = "FriendCell"
 
@@ -14,16 +19,24 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBOutlet weak var tableView: UITableView!
     var friends:[AnyObject] = []
+    var delegate: FriendListVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UINib(nibName: kFriendCell, bundle: nil), forCellReuseIdentifier: kFriendCell)
         // Do any additional setup after loading the view.
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func loadTableData(data: [User]) {
+        self.friends = data
+        self.tableView.reloadData()
     }
     
     // MARK: UITableViewDataSource
@@ -33,22 +46,22 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return friends.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFriendCell, for: indexPath) as! FriendCell
-//        cell.lbTitle.text = channels[(indexPath as NSIndexPath).row].name
+        let user = self.friends[indexPath.row] as! User
+        cell.lbName.text = user.email
         
+        cell.imgAvatar.sd_setImage(with: URL.init(string: user.avatarUrl))
         return cell
     }
     
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.delegate?.didSelectAtIndex(index: indexPath.row)
     }
 
     /*

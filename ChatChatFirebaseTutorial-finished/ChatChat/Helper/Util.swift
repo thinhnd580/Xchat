@@ -39,5 +39,79 @@ class Util {
             function()
         })
     }
+    
+    static func nonNullStrong(str:String?) -> String {
+        if let str = str {
+            return str
+            
+        } else {
+            return ""
+        }
+    }
+    
+    static func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
+    static func toHexStr(str: String) -> String {
+        return str.utf8.map{ $0 }.reduce("") { $0 + String($1, radix: 16)}
+    }
+    
+    static func hexStringtoAscii(_ hexString : String) -> String {
+        
+        var hex = hexString
+        var data = Data()
+        while(hex.characters.count > 0) {
+            let c: String = hex.substring(to: hex.index(hex.startIndex, offsetBy: 2))
+            hex = hex.substring(from: hex.index(hex.startIndex, offsetBy: 2))
+            var ch: UInt32 = 0
+            Scanner(string: c).scanHexInt32(&ch)
+            var char = UInt8(ch)
+            data.append(&char, count: 1)
+        }
+        return String(data: data, encoding: .utf8)!
+        
+        
+        
+        
+        
+        var chars = [Character]()
+        
+        for c in hexString.characters
+        {
+            chars.append(c)
+        }
+        
+        let numbers =  stride(from: 0, to: chars.count, by: 2).map{
+            strtoul(String(chars[$0 ..< $0+2]), nil, 16)
+        }
+        
+        var final = ""
+        var i = 0
+        
+        while i < numbers.count {
+            final.append(Character(UnicodeScalar(Int(numbers[i]))!))
+            i += 1
+        }
+        
+        return final
+    }
 
 }
+
+extension String {
+    
+}
+

@@ -40,7 +40,9 @@ struct Constants {
     
     struct ConstantsString {
         static let GoogleMapAPIKey = "AIzaSyCDsnW_PJz4w72JSNMAwZU-ShGv19BFxQ0"
-        
+        static let bundleID = "com.thjnh195.xchat"
+        static let rsaPKey = "RSAPKEY"
+        static let rsaSKey = "RSASKEY"
     }
     
     struct FBDatabase {
