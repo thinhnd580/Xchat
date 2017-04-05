@@ -44,7 +44,7 @@ class ForwardFriendViewController: UIViewController, FriendListVCDelegate {
         userRefHandle = userRef.observe(.childAdded, with: { (snapshot) -> Void in
             let userData = snapshot.value as! Dictionary<String, AnyObject>
             
-            if let uid = userData["uid"] as? String, uid == FIRAuth.auth()?.currentUser?.uid {
+            if let uid = userData["uid"] as? String, uid == FIRAuth.auth()?.currentUser?.email {
                 return
             }
             let user = User()
@@ -66,7 +66,7 @@ class ForwardFriendViewController: UIViewController, FriendListVCDelegate {
     }
     
     @IBAction func btnCancelClick(_ sender: Any) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     

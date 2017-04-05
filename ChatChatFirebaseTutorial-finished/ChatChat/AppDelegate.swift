@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateInitialViewController()
-        let channelVc = initialViewController?.childViewControllers.first as! ChannelListViewController
+        let channelVc = (initialViewController?.childViewControllers.first as! UITabBarController).viewControllers?.first as! ChannelListViewController
         channelVc.senderDisplayName = FIRAuth.auth()?.currentUser?.displayName!
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()

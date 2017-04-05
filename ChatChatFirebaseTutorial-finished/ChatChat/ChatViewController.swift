@@ -33,7 +33,7 @@ final class ChatViewController: JSQMessagesViewController {
   var channelRef: FIRDatabaseReference?
 
   private lazy var messageRef: FIRDatabaseReference = self.channelRef!.child("messages")
-  fileprivate lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://xchat-7a59e.appspot.com/")
+  fileprivate lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://xchat-7a59e.appspot.com")
   private lazy var userIsTypingRef: FIRDatabaseReference = self.channelRef!.child("typingIndicator").child(self.senderId)
   private lazy var usersTypingQuery: FIRDatabaseQuery = self.channelRef!.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
 
@@ -57,7 +57,7 @@ final class ChatViewController: JSQMessagesViewController {
     }
     set {
       localTyping = newValue
-      userIsTypingRef.setValue(newValue)
+//      userIsTypingRef.setValue(newValue)
     }
   }
     
@@ -68,7 +68,7 @@ final class ChatViewController: JSQMessagesViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.senderId = FIRAuth.auth()?.currentUser?.uid
+    self.senderId = FIRAuth.auth()?.currentUser?.email
     
     if channel?.user1?.uid == self.senderId {
         self.PRESENTKey = KeyChainControl.getPRESENT128KEYForChannelID(channelID: (channel?.id)!)
@@ -86,7 +86,7 @@ final class ChatViewController: JSQMessagesViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    observeTyping()
+//    observeTyping()
   }
   
   deinit {
@@ -176,6 +176,7 @@ final class ChatViewController: JSQMessagesViewController {
           
           if photoURL.hasPrefix("gs://") {
             self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+            
           }
         }
       } else {
@@ -217,8 +218,8 @@ final class ChatViewController: JSQMessagesViewController {
                 
                 let strFromData = data?.base64EncodedString()
                 let decryptedStrData = Cryptography.decryptMessage(message: strFromData!, PRESENTKey: self.PRESENTKey!)
-                let decryptedData = Data.init(base64Encoded: decryptedStrData)
-                
+//                let decryptedData = Data.init(base64Encoded: decryptedStrData)
+                let decryptedData = data
                 if (metadata?.contentType == "image/gif") {
                     mediaItem.image = UIImage.gifWithData(decryptedData!)
                 } else {
@@ -344,7 +345,7 @@ final class ChatViewController: JSQMessagesViewController {
   override func textViewDidChange(_ textView: UITextView) {
     super.textViewDidChange(textView)
     // If the text is not empty, the user is typing
-    isTyping = textView.text != ""
+//    isTyping = textView.text != ""
   }
   
 }

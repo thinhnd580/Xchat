@@ -27,11 +27,8 @@ class FireBaseControl: NSObject {
         } else {
             avatarUrl = ""
         }
-        
-        
-        
         let user = [
-            "uid": FIRAuth.auth()?.currentUser?.uid ?? "",
+            "uid": FIRAuth.auth()?.currentUser?.email ?? "",
             "email": FIRAuth.auth()?.currentUser?.email ?? "",
             "name": FIRAuth.auth()?.currentUser?.displayName ?? "",
             "avatarUrl": avatarUrl,

@@ -23,6 +23,7 @@
 		FF64D2DC1E827D760083ABAE /* Cryptography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF64D2DB1E827D760083ABAE /* Cryptography.swift */; };
 		FF64D2DE1E8284170083ABAE /* PRESENTCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF64D2DD1E8284170083ABAE /* PRESENTCipher.swift */; };
 		FF7931191E7BEA7D0081623E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7931181E7BEA7D0081623E /* GoogleService-Info.plist */; };
+		FF841E551E924331008CBBF3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF841E541E924331008CBBF3 /* ProfileViewController.swift */; };
 		FFA167E41E7FC50D003C073A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = FFA167DC1E7FC50D003C073A /* .gitkeep */; };
 		FFA167E51E7FC50D003C073A /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167DD1E7FC50D003C073A /* Api.swift */; };
 		FFA167E61E7FC50D003C073A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167DE1E7FC50D003C073A /* Constants.swift */; };
@@ -74,6 +75,7 @@
 		FF64D2DB1E827D760083ABAE /* Cryptography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cryptography.swift; sourceTree = "<group>"; };
 		FF64D2DD1E8284170083ABAE /* PRESENTCipher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRESENTCipher.swift; sourceTree = "<group>"; };
 		FF7931181E7BEA7D0081623E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF841E541E924331008CBBF3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FFA167DC1E7FC50D003C073A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		FFA167DD1E7FC50D003C073A /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		FFA167DE1E7FC50D003C073A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				FBEE53031D7B26450004CC1B /* ChatViewController.swift */,
 				FFA168071E8134ED003C073A /* ForwardFriendViewController.swift */,
 				FFA168011E813132003C073A /* FriendListViewController.swift */,
+				FF841E541E924331008CBBF3 /* ProfileViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				FFA168021E813132003C073A /* FriendListViewController.swift in Sources */,
 				FFA167E71E7FC50D003C073A /* DateHelper.swift in Sources */,
 				BB53557A1BEF765800321277 /* AppDelegate.swift in Sources */,
+				FF841E551E924331008CBBF3 /* ProfileViewController.swift in Sources */,
 				FFA167E51E7FC50D003C073A /* Api.swift in Sources */,
 				45A0D8FE1D49508800F26729 /* CreateChannelCell.swift in Sources */,
 				FFA167EB1E7FC50D003C073A /* Util.swift in Sources */,

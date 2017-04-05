@@ -83,10 +83,6 @@ class Util {
         }
         return String(data: data, encoding: .utf8)!
         
-        
-        
-        
-        
         var chars = [Character]()
         
         for c in hexString.characters
@@ -109,6 +105,12 @@ class Util {
         return final
     }
 
+}
+
+extension Array {
+    mutating func move(at oldIndex: Int, to newIndex: Int) {
+        self.insert(self.remove(at: oldIndex), at: newIndex)
+    }
 }
 
 extension String {

@@ -7,14 +7,15 @@
 //
 import UIKit
 
-class Channel {
+class Channel: NSObject {
     var id: String = ""
     var name: String = ""
     var initKey: String = ""
     var user1: User? = nil
     var user2: User? = nil
+    var hasNewMessage: Bool = false;
     
-    init() {
+    override init() {
         
     }
     

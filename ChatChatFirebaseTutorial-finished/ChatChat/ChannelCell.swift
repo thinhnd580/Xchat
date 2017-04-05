@@ -23,4 +23,8 @@ class ChannelCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setNewMessengerState(new: Bool) {
+        self.lbTitle.font = new ? UIFont.boldSystemFont(ofSize: 20) : UIFont.systemFont(ofSize: 15)
+    }
+    
 }
