@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Profile"
         let url = FIRAuth.auth()?.currentUser?.photoURL?.absoluteString
         self.imgAvatar.sd_setImage(with: URL.init(string: url!))
         self.lbUsername.text = FIRAuth.auth()?.currentUser?.displayName
@@ -28,8 +29,13 @@ class ProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    @IBAction func cellKeyClick(_ sender: Any) {
+        
+    }
+
+    @IBAction func btnLogoutClick(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

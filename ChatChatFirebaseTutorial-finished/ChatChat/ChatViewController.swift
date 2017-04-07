@@ -172,16 +172,15 @@ final class ChatViewController: JSQMessagesViewController {
         self.finishReceivingMessage()
       } else if let id = messageData["senderId"] as String!, let photoURL = messageData["photoURL"] as String! {
         if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
-          self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
-          
-          if photoURL.hasPrefix("gs://") {
-            self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+            self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
             
-          }
+            if photoURL.hasPrefix("gs://") {
+                self.fetchImageDataAtURL(photoURL, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
+            }
         }
       } else {
         print("Error! Could not decode message data")
-      }
+        }
     })
     
     // We can also use the observer method to listen for
@@ -216,14 +215,10 @@ final class ChatViewController: JSQMessagesViewController {
                     return
                 }
                 
-                let strFromData = data?.base64EncodedString()
-                let decryptedStrData = Cryptography.decryptMessage(message: strFromData!, PRESENTKey: self.PRESENTKey!)
-//                let decryptedData = Data.init(base64Encoded: decryptedStrData)
-                let decryptedData = data
                 if (metadata?.contentType == "image/gif") {
-                    mediaItem.image = UIImage.gifWithData(decryptedData!)
+                    mediaItem.image = UIImage.gifWithData(data!)
                 } else {
-                    mediaItem.image = UIImage.init(data: decryptedData!)
+                    mediaItem.image = UIImage.init(data: data!)
                 }
                 self.collectionView.reloadData()
                 
@@ -233,6 +228,37 @@ final class ChatViewController: JSQMessagesViewController {
                 self.photoMessageMap.removeValue(forKey: key!)
             })
         }
+//        
+//        let storageRef = FIRStorage.storage().reference(forURL: photoURL)
+//        storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
+//            if let error = error {
+//                print("Error downloading image data: \(error)")
+//                return
+//            }
+//            
+//            storageRef.metadata(completion: { (metadata, metadataErr) in
+//                if let error = metadataErr {
+//                    print("Error downloading metadata: \(error)")
+//                    return
+//                }
+//                
+//                let strFromData = data?.base64EncodedString()
+//                let decryptedStrData = Cryptography.decryptMessage(message: strFromData!, PRESENTKey: self.PRESENTKey!)
+////                let decryptedData = Data.init(base64Encoded: decryptedStrData)
+//                let decryptedData = data
+//                if (metadata?.contentType == "image/gif") {
+//                    mediaItem.image = UIImage.gifWithData(decryptedData!)
+//                } else {
+//                    mediaItem.image = UIImage.init(data: decryptedData!)
+//                }
+//                self.collectionView.reloadData()
+//                
+//                guard key != nil else {
+//                    return
+//                }
+//                self.photoMessageMap.removeValue(forKey: key!)
+//            })
+//        }
     }
 
   private func observeTyping() {
@@ -360,10 +386,14 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     // 1
     if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL {
       // Handle picking a Photo from the Photo Library
+        // Get local file URLs
+        guard let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        let imageData = UIImagePNGRepresentation(image)!
+        
       // 2
       let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
       let asset = assets.firstObject
-
+        
       // 3
       if let key = sendPhotoMessage() {
         // 4
@@ -374,14 +404,17 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
           let path = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
 
           // 6
-          self.storageRef.child(path).putFile(imageFileURL!, metadata: nil) { (metadata, error) in
-            if let error = error {
-              print("Error uploading photo: \(error.localizedDescription)")
-              return
+            // Upload file to Firebase Storage
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/png"
+            self.storageRef.child(path).put(imageData, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading photo: \(error.localizedDescription)")
+                    return
+                }
+                // 7
+                self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
             }
-            // 7
-            self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
-          }
         })
       }
     } else {
