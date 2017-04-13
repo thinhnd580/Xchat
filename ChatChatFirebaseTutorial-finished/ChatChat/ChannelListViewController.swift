@@ -39,7 +39,7 @@ class ChannelListViewController: UIViewController, UITableViewDataSource, UITabl
     private var channelRefHandle: FIRDatabaseHandle?
     private var channelRefChangedHandle: FIRDatabaseHandle?
     private var channelMessageRefHandle: FIRDatabaseHandle?
-    private var channels: [Channel] = []
+    var channels: [Channel] = []
   
     private lazy var channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("channels")
     

@@ -47,5 +47,6 @@ struct Constants {
     
     struct FBDatabase {
         static let User = "User"
+        static let Channel = "Channel"
     }
 }

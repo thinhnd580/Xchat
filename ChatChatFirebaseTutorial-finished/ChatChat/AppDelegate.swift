@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             if FIRAuth.auth()?.currentUser != nil {
                 self.presentMainScreen()
             } else {
-                self.presentLoginScreen()
                 
+                self.presentLoginScreen()
             }
         }
         

@@ -31,7 +31,9 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func cellKeyClick(_ sender: Any) {
-        
+        let vc = self.tabBarController?.viewControllers?.first as! ChannelListViewController
+        FireBaseControl.sharedInstance.deleteAllChannel(channels: vc.channels)
+        try? FIRAuth.auth()?.signOut()
     }
 
     @IBAction func btnLogoutClick(_ sender: Any) {

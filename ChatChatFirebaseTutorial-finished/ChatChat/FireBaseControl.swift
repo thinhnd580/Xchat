@@ -41,5 +41,11 @@ class FireBaseControl: NSObject {
         
     }
 
+    func deleteAllChannel(channels: [Channel]) {
+        let channelRef = FIRDatabase.database().reference().child(Constants.FBDatabase.Channel)
+        for channel in channels {
+            channelRef.child(channel.id).removeValue()
+        }
+    }
     
 }

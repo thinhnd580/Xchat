@@ -210,9 +210,9 @@
 				BB5355821BEF765800321277 /* LaunchScreen.storyboard */,
 				459E535E1D4BF36A00E675A5 /* License */,
 				FFA167FD1E812AF2003C073A /* ChannelCell.swift */,
-				FFA167FE1E812AF2003C073A /* ChannelCell.xib */,
 				FFA168031E813150003C073A /* FriendCell.swift */,
 				FFA168041E813150003C073A /* FriendCell.xib */,
+				FFA167FE1E812AF2003C073A /* ChannelCell.xib */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
