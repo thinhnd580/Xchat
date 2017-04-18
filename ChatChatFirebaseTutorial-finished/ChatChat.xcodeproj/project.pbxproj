@@ -19,11 +19,13 @@
 		BB5355841BEF765800321277 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5355821BEF765800321277 /* LaunchScreen.storyboard */; };
 		FBEE53041D7B26450004CC1B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE53031D7B26450004CC1B /* ChatViewController.swift */; };
 		FF0308C61E8373BE0074943C /* User.swift in Resources */ = {isa = PBXBuildFile; fileRef = FFA168091E813E45003C073A /* User.swift */; };
+		FF366CE01EA1E37B001A25D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF366CDF1EA1E37B001A25D7 /* GoogleService-Info.plist */; };
 		FF64D2DA1E8275E60083ABAE /* KeyChainControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF64D2D91E8275E60083ABAE /* KeyChainControl.swift */; };
 		FF64D2DC1E827D760083ABAE /* Cryptography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF64D2DB1E827D760083ABAE /* Cryptography.swift */; };
 		FF64D2DE1E8284170083ABAE /* PRESENTCipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF64D2DD1E8284170083ABAE /* PRESENTCipher.swift */; };
 		FF7931191E7BEA7D0081623E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7931181E7BEA7D0081623E /* GoogleService-Info.plist */; };
 		FF841E551E924331008CBBF3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF841E541E924331008CBBF3 /* ProfileViewController.swift */; };
+		FFA0587A1EA66F770051A28F /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA058791EA66F770051A28F /* ChatDetailViewController.swift */; };
 		FFA167E41E7FC50D003C073A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = FFA167DC1E7FC50D003C073A /* .gitkeep */; };
 		FFA167E51E7FC50D003C073A /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167DD1E7FC50D003C073A /* Api.swift */; };
 		FFA167E61E7FC50D003C073A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA167DE1E7FC50D003C073A /* Constants.swift */; };
@@ -71,11 +73,13 @@
 		E8DDF38A1BEF88DC00B5F45A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E8DDF38C1BEF88E200B5F45A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FBEE53031D7B26450004CC1B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		FF366CDF1EA1E37B001A25D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF64D2D91E8275E60083ABAE /* KeyChainControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainControl.swift; sourceTree = "<group>"; };
 		FF64D2DB1E827D760083ABAE /* Cryptography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cryptography.swift; sourceTree = "<group>"; };
 		FF64D2DD1E8284170083ABAE /* PRESENTCipher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRESENTCipher.swift; sourceTree = "<group>"; };
 		FF7931181E7BEA7D0081623E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF841E541E924331008CBBF3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FFA058791EA66F770051A28F /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		FFA167DC1E7FC50D003C073A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		FFA167DD1E7FC50D003C073A /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		FFA167DE1E7FC50D003C073A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 			children = (
 				4570C5E21D54FD11007946D9 /* ChatChat.entitlements */,
 				FF7931181E7BEA7D0081623E /* GoogleService-Info.plist */,
+				FF366CDF1EA1E37B001A25D7 /* GoogleService-Info.plist */,
 				45A0D8FF1D4BB5DD00F26729 /* Model */,
 				BB5355901BEF816500321277 /* Controller */,
 				BB5355921BEF818700321277 /* Layout */,
@@ -186,6 +191,7 @@
 				FFA168071E8134ED003C073A /* ForwardFriendViewController.swift */,
 				FFA168011E813132003C073A /* FriendListViewController.swift */,
 				FF841E541E924331008CBBF3 /* ProfileViewController.swift */,
+				FFA058791EA66F770051A28F /* ChatDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -273,7 +279,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 556LZQ7WUH;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -318,6 +324,7 @@
 				FFA167E41E7FC50D003C073A /* .gitkeep in Resources */,
 				BB53557F1BEF765800321277 /* Main.storyboard in Resources */,
 				FF7931191E7BEA7D0081623E /* GoogleService-Info.plist in Resources */,
+				FF366CE01EA1E37B001A25D7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +343,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		42E6F9E6C207BADB630F9DDF /* [CP] Copy Pods Resources */ = {
@@ -400,6 +407,7 @@
 				FFA167EB1E7FC50D003C073A /* Util.swift in Sources */,
 				FFA167FA1E80DC13003C073A /* Data+HexDescription.swift in Sources */,
 				FFA1680A1E813E45003C073A /* User.swift in Sources */,
+				FFA0587A1EA66F770051A28F /* ChatDetailViewController.swift in Sources */,
 				FF64D2DA1E8275E60083ABAE /* KeyChainControl.swift in Sources */,
 				FFA167E61E7FC50D003C073A /* Constants.swift in Sources */,
 				FFA167EA1E7FC50D003C073A /* UIView_Borders.swift in Sources */,
@@ -526,14 +534,14 @@
 				CODE_SIGN_ENTITLEMENTS = ChatChat/ChatChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Anh Son Le (JV9RZ28ZA6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 556LZQ7WUH;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChatChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thjnh195.xchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9a2ee48e-1193-467c-9994-06d26b017031";
-				PROVISIONING_PROFILE_SPECIFIER = "thjnh - xchat-dv";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ChatChat/ChatChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -548,7 +556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ChatChat/ChatChat.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anh Son Le (JV9RZ28ZA6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ChatChat/Info.plist;

@@ -57,12 +57,11 @@ class ChannelListViewController: UIViewController, UITableViewDataSource, UITabl
         //    let de = Cryptography.decryptMessage(message: en, PRESENTKey: "1234567890123456")
         
         
-        title = "RW RIC"
+        self.tabBarController?.navigationController?.navigationBar.topItem?.title = "XChat"
         self.tableView.register(UINib(nibName: "ChannelCell", bundle: nil), forCellReuseIdentifier: "ChannelCell")
         observeChannels()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
     }
     
     deinit {
@@ -174,13 +173,14 @@ class ChannelListViewController: UIViewController, UITableViewDataSource, UITabl
                     
                     var idx = 0;
                     for var channel in self.channels {
-                        if channel.id == messSnapShot.key {
+                        if channel.id == newChannel.id {
                             self.channels.move(at: idx, to: 0)
-                            idx+=1;
+                            channel.hasNewMessage = true;
+                            self.tableView.reloadData()
+                            break;
+                            
                         }
-                        channel.hasNewMessage = true;
-                        self.tableView.reloadData()
-                        break;
+                        idx+=1;
                     }
                     
                 })

@@ -3,7 +3,7 @@
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
+* in the Software without restriction, including without limitavarn the rights
 * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 * copies of the Software, and to permit persons to whom the Software is
 * furnished to do so, subject to the following conditions:
@@ -42,7 +42,7 @@ final class ChatViewController: JSQMessagesViewController {
   
   private var messages: [JSQMessage] = []
   private var photoMessageMap = [String: JSQPhotoMediaItem]()
-    private var PRESENTKey : String?
+    public var PRESENTKey : String?
   
   private var localTyping = false
   var channel: Channel? {
@@ -285,11 +285,11 @@ final class ChatViewController: JSQMessagesViewController {
     let itemRef = messageRef.childByAutoId()
     
     // 2
-    let decryptText = Cryptography.encryptMessage(message: text, PRESENTKey: self.PRESENTKey!)
+    let encryptText = Cryptography.encryptMessage(message: text, PRESENTKey: self.PRESENTKey!)
     let messageItem = [
       "senderId": senderId!,
       "senderName": senderDisplayName!,
-      "text": decryptText,
+      "text": encryptText,
     ]
     
     // 3
@@ -389,20 +389,22 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         // Get local file URLs
         guard let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         let imageData = UIImagePNGRepresentation(image)!
+        let imgDataStrBase64 = imageData.base64EncodedString()
+//        let imgStrEncrypted = Cryptography.encryptMessage(message: imgDataStrBase64, PRESENTKey:self.PRESENTKey!)
+//        let imgDataEncrypted = imgStrEncrypted.data(using: .ascii)
+        // 2
+        let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
+        let asset = assets.firstObject
         
-      // 2
-      let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
-      let asset = assets.firstObject
-        
-      // 3
-      if let key = sendPhotoMessage() {
+        // 3
+        if let key = sendPhotoMessage() {
+
         // 4
         asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
-          let imageFileURL = contentEditingInput?.fullSizeImageURL
+//          let imageFileURL = contentEditingInput?.fullSizeImageURL
 
           // 5
           let path = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
-
           // 6
             // Upload file to Firebase Storage
             let metadata = FIRStorageMetadata()
@@ -425,4 +427,15 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true, completion:nil)
   }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if "SeguePresentKey" == segue.identifier {
+            let vc = segue.destination as! ChatDetailViewController
+            vc.key = self.PRESENTKey
+        }
+    }
+    
+    
 }
